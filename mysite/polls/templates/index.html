@@ -1,0 +1,17 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button List</title>
+</head>
+<body>
+    <h1>Click a Button</h1>
+    <form action="{% url 'handle_button_click' %}" method="post">
+        {% csrf_token %}
+        {% for string in strings %}
+            <button type="submit" name="clicked_string" value="{{ string }}">{{ string }}</button>
+        {% endfor %}
+    </form>
+</body>
+</html>

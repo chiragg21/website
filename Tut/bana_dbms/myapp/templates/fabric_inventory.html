@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fabric Inventory</title>
+</head>
+<body>
+  <h1>Inventory for {{ fabric.FabricName }}</h1>
+  {% if inventory %}
+    <ul>
+      {% for item in inventory %}
+        <li>Quantity: {{ item.Quantity }}, Swatch: {{ item.Swatch }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No inventory found for this fabric.</p>
+  {% endif %}
+</body>
+</html>

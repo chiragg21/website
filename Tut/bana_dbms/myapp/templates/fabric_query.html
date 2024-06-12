@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fabric Query Results</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <h1>{{ query_type }} for {{ fabric.FabricName }}</h1>
+  {% if data %}
+    {% if query_type == 'Inventory' %}
+      <table>
+        <tr>
+          <th>Quantity</th>
+          <th>Swatch</th>
+        </tr>
+        {% for item in data %}
+          <tr>
+            <td>{{ item.Quantity }}</td>
+            <td>{{ item.Swatch }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% elif query_type == 'Vendors' %}
+      <table>
+        <tr>
+          <th>Vendor</th>
+          <th>Lead Time</th>
+          <th>Max Quantity</th>
+          <th>Price</th>
+          <th>Valid From</th>
+          <th>Valid Till</th>
+        </tr>
+        {% for vendor in data %}
+          <tr>
+            <td>{{ vendor.VendorID }}</td>
+            <td>{{ vendor.DeliveryLeadTime }}</td>
+            <td>{{ vendor.MaxQuantity }}</td>
+            <td>{{ vendor.Price }}</td>
+            <td>{{ vendor.ValidFrom }}</td>
+            <td>{{ vendor.ValidTill }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% elif query_type == 'Sale Price' %}
+      <table>
+        <tr>
+          <th>Price</th>
+          <th>Valid From</th>
+          <th>Valid Till</th>
+        </tr>
+        {% for price in data %}
+          <tr>
+            <td>{{ price.Price }}</td>
+            <td>{{ price.ValidFrom }}</td>
+            <td>{{ price.ValidTill }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+  {% else %}
+    <p>No data found for this fabric and query type.</p>
+  {% endif %}
+</body>
+</html>

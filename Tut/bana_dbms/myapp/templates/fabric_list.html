@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fabric List</title>
+</head>
+<body>
+  <h1>Fabric List</h1>
+  <ul>
+    {% for fabric in fabrics %}
+      <li>{{ fabric.FabricName }} ({{ fabric.FabricType }}) - {{ fabric.ImageLink }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
